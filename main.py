@@ -1,3 +1,4 @@
+# main.py (на Android)
 import asyncio
 from kivy.app import App
 from kivy.uix.widget import Widget
@@ -19,7 +20,6 @@ class GameWidget(Widget):
         self.snakes = []
         self.fruit = None
         self.extra_fruits = []
-        self.connected = False
         self.invincibles = []
         self.canvas.clear()
         Clock.schedule_interval(self.update_canvas, 1/30)
@@ -61,7 +61,7 @@ class ZmeikaApp(App):
         return root
 
     async def ws_loop(self):
-        uri = "ws://localhost:8765"
+        uri = "ws://192.168.0.100:8765"  # 💡 Введи свой IP сервера здесь!
         try:
             async with websockets.connect(uri) as websocket:
                 self.websocket = websocket
@@ -81,6 +81,4 @@ class ZmeikaApp(App):
         asyncio.ensure_future(self.ws_loop())
 
 if __name__ == '__main__':
-    from server import run_server
-    asyncio.ensure_future(run_server())
     ZmeikaApp().run()
