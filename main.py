@@ -61,7 +61,7 @@ class ZmeikaApp(App):
         return root
 
     async def ws_loop(self):
-        uri = "ws://192.168.0.100:8765"  # 💡 Введи свой IP сервера здесь!
+        uri = "ws://192.168.0.111:8765"  # 💡 Введи свой IP сервера здесь!
         try:
             async with websockets.connect(uri) as websocket:
                 self.websocket = websocket
